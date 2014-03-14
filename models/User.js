@@ -11,17 +11,19 @@ module.exports = function (schema) {
   
   User = schema.define('User', {
     email: String
+  }, {
+    table: 'users'
   });
-  console.log('Defined user schema');
-  
-  User.create({
-    email: 'arne.hassel@gmail.com'
-  }, function () {
-    console.log("CREATED USER", arguments);
-    User.count(function () {
-      console.log("USERS", arguments);
-    });
-  });
+//  console.log('Defined user schema');
+//  
+//  User.create({
+//    email: 'test@gmail.com'
+//  }, function () {
+//    console.log("CREATED USER", arguments);
+//    User.count(function () {
+//      console.log("USERS", arguments);
+//    });
+//  });
   
   return User;
 };

@@ -4,10 +4,10 @@
  */
 
 var express = require('express'),
-    mongoStore = require('connect-mongo')(express),
-    flash = require('connect-flash');
+    flash = require('connect-flash'),
+    path = require('path');
 
-module.exports = function (app, config, passport) {
+module.exports = function (app, passport) {
   app.set('port', process.env.PORT || 3000);
   
   app.set('showStackError', true);
@@ -18,14 +18,14 @@ module.exports = function (app, config, passport) {
     },
     level: 9
   }));
-  app.use(express.static(config.root + '/public'));
+  app.use(express.static(path.join(__dirname, 'public')));
   app.use(express.logger('dev'));
   app.use(express.json());
   app.use(express.urlencoded());
   app.use(express.methodOverride());
 
   // set views path, template engine and default layout
-  app.set('views', path.join(__dirname, 'views'));
+  app.set('views', path.join(__dirname, '../views'));
   app.set('view engine', 'ejs');
 
   app.configure(function () {
@@ -37,11 +37,7 @@ module.exports = function (app, config, passport) {
 
     // express/mongo session storage
     app.use(express.session({
-      secret: 'hdo-budget-api',
-      store: new mongoStore({
-        url: config.db,
-        collection : 'sessions'
-      })
+      secret: 'hdo-budget-api'
     }));
 
     // connect flash for flash messages
@@ -56,7 +52,7 @@ module.exports = function (app, config, passport) {
     // routes should be at the last
     app.use(app.router);
 
-    app.use(require('less-middleware')({ src: path.join(__dirname, 'public') }));
+    app.use(require('less-middleware')(path.join(__dirname, 'public')));
     
     // assume "not found" in the error msgs
     // is a 404. this is somewhat silly, but

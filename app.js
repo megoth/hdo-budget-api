@@ -7,13 +7,16 @@ var http = require('http');
 var path = require('path');
 var passport = require('passport');
 
+// bootstrap models
+require('./config/models')();
+
 // bootstrap passport config
-require('./config/passport')(passport, config);
+require('./config/passport')(passport);
 
 var app = express();
 
 // express settings
-require('./config/express')(app, config, passport);
+require('./config/express')(app, passport);
 
 // Bootstrap routes
 require('./config/routes')(app, passport);

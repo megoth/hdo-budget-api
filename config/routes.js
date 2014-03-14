@@ -1,5 +1,5 @@
-var routes = require('./routes');
-var user = require('./routes/user');
+var routes = require('../routes');
+var user = require('../routes/user');
 
 module.exports = function (app, passport) {
   app.get('/', routes.index);

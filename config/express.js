@@ -54,7 +54,11 @@ module.exports = function (app, passport) {
     // routes should be at the last
     app.use(app.router);
 
-    app.use(require('less-middleware')(path.join(__dirname, 'public')));
+    app.use(require('node-sass').middleware({
+      src: path.join(__dirname, '../sass'),
+      dest: path.join(__dirname, '../public'),
+      debug: true
+    }));
     
     // assume "not found" in the error msgs
     // is a 404. this is somewhat silly, but

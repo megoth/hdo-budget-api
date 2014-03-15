@@ -16,6 +16,15 @@
     "jugglingdb": "~0.2.12",
     "jugglingdb-postgres": "0.0.4",
     "connect-flash": "~0.1.1",
-    "ejs-locals": "~1.0.2"
+    "ejs-locals": "~1.0.2",
+    "sass-middleware": "0.0.3",
+    "node-sass": "~0.8.3"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.4",
+    "load-grunt-tasks": "~0.4.0",
+    "grunt-contrib-sass": "~0.7.3",
+    "load-grunt-config": "~0.8.0-beta.1",
+    "grunt-contrib-watch": "~0.6.0"
   }
 }

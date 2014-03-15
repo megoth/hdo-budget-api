@@ -2,10 +2,11 @@
  * Module dependencies.
  */
 
-var express = require('express');
-var http = require('http');
-var path = require('path');
-var passport = require('passport');
+var express = require('express'),
+    http = require('http'),
+    path = require('path'),
+    passport = require('passport'),
+    auth = require('./config/middlewares/authorization');
 
 // bootstrap models
 require('./config/models')();
@@ -19,7 +20,7 @@ var app = express();
 require('./config/express')(app, passport);
 
 // Bootstrap routes
-require('./config/routes')(app, passport);
+require('./config/routes')(app, passport, auth);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

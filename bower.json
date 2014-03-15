@@ -1,0 +1,20 @@
+{
+  "name": "hdo-budget-api",
+  "version": "0.1.0",
+  "homepage": "https://github.com/megoth/hdo-budget-api",
+  "authors": [
+    "Arne Hassel <arne.hassel@gmail.com>"
+  ],
+  "description": "An attempt at an API for Norwegian state budgets",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "sass-bootstrap": "~3.0.2"
+  }
+}

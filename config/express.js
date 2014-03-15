@@ -5,7 +5,8 @@
 
 var express = require('express'),
     flash = require('connect-flash'),
-    path = require('path');
+    path = require('path')
+    engine = require('ejs-locals');
 
 module.exports = function (app, passport) {
   app.set('port', process.env.PORT || 3000);
@@ -26,6 +27,7 @@ module.exports = function (app, passport) {
 
   // set views path, template engine and default layout
   app.set('views', path.join(__dirname, '../views'));
+  app.engine('ejs', engine);
   app.set('view engine', 'ejs');
 
   app.configure(function () {

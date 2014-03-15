@@ -19,18 +19,3 @@ exports.requiresUnauthorized = function (req, res, next) {
     next();
   }
 };
-
-/**
- *
- * @param req
- * @param res
- * @param next
- */
-exports.isAdmin = function (req, res, next) {
-  if (req.user && req.user.isAdmin) {
-    next();
-  } else {
-    req.flash("error", "Need to be admin");
-    res.redirect('/');
-  }
-};

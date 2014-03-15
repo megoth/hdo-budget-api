@@ -1,9 +1,10 @@
 module.exports = {
   sass: {
     files: ['**/*.scss'],
-    tasks: ['sass'],
-    options: {
-      spawn: false
-    }
+    tasks: ['sass']
+  },
+  test: {
+    files: ['**/*.js'],
+    tasks: ['mochaTest']
   }
 };

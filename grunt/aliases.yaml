@@ -1,2 +1,5 @@
 default:
-  - 'watch:sass'
+  - 'watch'
+
+test:
+  - 'mochaTest'

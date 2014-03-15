@@ -29,6 +29,7 @@
     "grunt-contrib-sass": "~0.7.3",
     "load-grunt-config": "~0.8.0-beta.1",
     "grunt-contrib-watch": "~0.6.0",
-    "mocha": "~1.18.0"
+    "mocha": "~1.18.0",
+    "grunt-mocha-test": "~0.10.0"
   }
 }

@@ -3,7 +3,9 @@
   "repository": "https://github.com/megoth/hdo-budget-api",
   "version": "0.0.1",
   "scripts": {
-    "start": "node app.js"
+    "setup": "npm install && ./node_modules/.bin/bower install",
+    "start": "node app.js",
+    "test": "./node_modules/.bin/mocha --recursive"
   },
   "dependencies": {
     "express": "3.4.8",
@@ -26,6 +28,7 @@
     "load-grunt-tasks": "~0.4.0",
     "grunt-contrib-sass": "~0.7.3",
     "load-grunt-config": "~0.8.0-beta.1",
-    "grunt-contrib-watch": "~0.6.0"
+    "grunt-contrib-watch": "~0.6.0",
+    "mocha": "~1.18.0"
   }
 }

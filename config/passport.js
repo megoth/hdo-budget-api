@@ -8,11 +8,17 @@ module.exports = function (passport) {
 
   // serialize sessions
   passport.serializeUser(function (user, done) {
+//    console.log("SERIALIZE", user);
     done(null, user.id);
   });
 
   passport.deserializeUser(function (id, done) {
-    User.load(id, done)
+//    console.log("DESERIALIZE", id);
+    User.find(id, done);
+//    User.find(id, function (err, user) {
+//      console.log("FOUND USER", err, user);
+//      done(err, user);
+//    });
   });
   
   // use google strategy
@@ -20,8 +26,10 @@ module.exports = function (passport) {
     returnURL: 'http://localhost:3000/auth/google/return',
     realm: 'http://localhost:3000/'
   }, function (identifier, profile, done) {
-//      User.findOrCreate({ openId: identifier }, function(err, user) {
-//        done(err, user);
+      User.findOne({ where: {openid: identifier } }, done);
+//      User.findOne({ where: {openid: identifier } }, function (err, user) {
+//        console.log("ERROR", err, user);
+//        return done(err, user);
 //      });
     }
   ));

@@ -18,7 +18,7 @@ module.exports = function (app, passport) {
     },
     level: 9
   }));
-  app.use(express.static(path.join(__dirname, 'public')));
+  app.use(express.static(path.join(__dirname, '../public')));
   app.use(express.logger('dev'));
   app.use(express.json());
   app.use(express.urlencoded());

@@ -15,6 +15,7 @@ module.exports = function (app, passport, auth) {
   
   // admin pages
   app.get('/admin', auth.requiresLogin, admin.list);
-  app.get('/budgets/create', auth.requiresLogin, budget.create);
+  app.get('/budgets/new', auth.requiresLogin, budget.create);
+  app.post('/budgets/new', auth.requiresLogin, budget.post);
   app.get('/users', auth.requiresLogin, user.list);
 };

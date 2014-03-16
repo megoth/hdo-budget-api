@@ -10,8 +10,8 @@ exports.post = function (req, res) {
   req.checkBody('year', 'Invalid year').notEmpty().isInt();
   
   Budget.create({
-    name: req.name,
-    year: parseInt(req.year)
+    name: req.body.name,
+    year: parseInt(req.body.year)
   }, function (err, budget) {
     req.flash('notice', 'Created budget');
     res.redirect(303, util.format('budget/%d', budget.id));

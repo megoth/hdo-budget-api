@@ -23,7 +23,8 @@ describe('When posting a budget', function () {
       '../models/Budget': Budget
     });
     // mock req
-    var req = { name: 'test', year: '2014' };
+    var req = {};
+    req.body = { name: 'test', year: '2014' };
     validator = mockValidator(req);
     req.flash = flash = sinon.spy();
     // mock res

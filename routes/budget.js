@@ -5,5 +5,6 @@ exports.create = function (req, res) {
 };
 
 exports.post = function (req, res) {
-  
+  req.checkBody('name', 'Name required').notEmpty();
+  req.checkBody('year', 'Invalid year').notEmpty().isInt();
 };

@@ -25,14 +25,7 @@ module.exports = function (passport) {
   passport.use(new GoogleStrategy({
     returnURL: 'http://localhost:3000/auth/google/return',
     realm: 'http://localhost:3000/'
-  }, function (identifier, profile, done) {
-      User.findOne({ where: {openid: identifier } }, done);
-//      User.findOne({ where: {openid: identifier } }, function (err, user) {
-//        console.log("ERROR", err, user);
-//        return done(err, user);
-//      });
-    }
-  ));
+  }, require('./passport/googleResponseHandler')));
   // use geekevents strategy
 //  passport.use(new GeekeventsStrategy(function (userCred, done) {
 //    User.findOne(userCred, function (err, user) {

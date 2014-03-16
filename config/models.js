@@ -1,4 +1,6 @@
-var Schema = require('jugglingdb').Schema;
+var Schema = require('jugglingdb').Schema,
+    fs = require('fs'),
+    util = require('util');
 
 module.exports = function () {
   var schema = new Schema('postgres', {
@@ -13,5 +15,7 @@ module.exports = function () {
     // debug: false
   });
   
-  require('../models/User')(schema);
+  fs.readdirSync('models').forEach(function (fileName) {
+    require(util.format('%s/%s', '../models', fileName)).setup(schema);
+  });
 };

@@ -1,7 +1,7 @@
-var _ = require('underscore'),
-    sinon = require('sinon');
+var sinon = require('sinon'),
+    _ = require('underscore');
 
-module.exports = function () {
+module.exports = function (req) {
   var constraints = {};
   ['isInt', 'notEmpty'].forEach(function (method) {
     constraints[method] = sinon.spy(function () {
@@ -16,5 +16,5 @@ module.exports = function () {
       return constraints;
     });
   });
-  return validations;
+  return _.extend(req, validations);
 };

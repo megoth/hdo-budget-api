@@ -6,7 +6,7 @@
 var express = require('express'),
     flash = require('connect-flash'),
     path = require('path')
-    engine = require('ejs-locals');
+    engine = require('jade').__express;
 
 module.exports = function (app, passport) {
   app.set('port', process.env.PORT || 3000);
@@ -27,8 +27,8 @@ module.exports = function (app, passport) {
 
   // set views path, template engine and default layout
   app.set('views', path.join(__dirname, '../views'));
-  app.engine('ejs', engine);
-  app.set('view engine', 'ejs');
+  app.engine('jade', engine);
+  app.set('view engine', 'jade');
 
   app.configure(function () {
     // cookieParser should be above session

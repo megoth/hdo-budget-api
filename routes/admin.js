@@ -4,5 +4,8 @@
 
 exports.list = function(req, res){
 //  passport.authorize('google', { failureRedirect: '/' })
-  res.render('admin', { title: 'Admin' });
+  res.render('admin', { 
+    title: 'Admin',
+    user: req.user
+  });
 };

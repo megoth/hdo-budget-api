@@ -5,5 +5,8 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Budgets' });
+  res.render('index', { 
+    title: 'Budgets',
+    isAuthenticated: req.isAuthenticated()
+  });
 };

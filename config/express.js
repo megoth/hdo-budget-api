@@ -20,6 +20,7 @@ module.exports = function (app, passport) {
     level: 9
   }));
   app.use(express.static(path.join(__dirname, '../public')));
+  app.use(express.static(path.join(__dirname, '../bower_components')));
   app.use(express.logger('dev'));
   app.use(express.json());
   app.use(express.urlencoded());
@@ -29,6 +30,9 @@ module.exports = function (app, passport) {
   app.set('views', path.join(__dirname, '../views'));
   app.engine('jade', engine);
   app.set('view engine', 'jade');
+  app.set('view options', {
+    layout: false
+  });
 
   app.configure(function () {
     // cookieParser should be above session

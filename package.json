@@ -26,6 +26,7 @@
     "load-grunt-tasks": "~0.4.0",
     "grunt-contrib-sass": "~0.7.3",
     "load-grunt-config": "~0.8.0-beta.1",
-    "grunt-contrib-watch": "~0.6.0"
+    "grunt-contrib-watch": "~0.6.0",
+    "grunt-contrib-less": "~0.11.0"
   }
 }

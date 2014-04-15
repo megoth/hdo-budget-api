@@ -1,0 +1,21 @@
+{
+  "name": "hdo-budget-api",
+  "version": "0.0.1",
+  "homepage": "https://github.com/megoth/hdo-budget-api",
+  "authors": [
+    "Arne <arne.hassel@rr-research.no>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.1.1",
+    "bootstrap-sass": "~3.0.2"
+  }
+}

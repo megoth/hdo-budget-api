@@ -1,9 +1,7 @@
-h1= title
-p Logget inn som #{user.name}
-ul
-  li
-    a(href="/budgets/create") Create new budget
-  li
-    a(href="/") Forside
-  li
-    a(href="/logout") Logg ut
+extends layout
+
+block mainContent
+  p Logget inn som #{user.name}
+  ul
+    li
+      a(href="/budgets/create") Create new budget

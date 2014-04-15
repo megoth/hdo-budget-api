@@ -1,11 +1,4 @@
-h1= title
-p Welcome to #{title}
-ul
-if (isAuthenticated)
-  li
-    a(href="/admin") Admin
-  li
-    a(href="/logout") Logg ut
-else
-  li
-    a(href="/auth/google") Sign In with Google
+extends layout
+
+block mainContent
+  p Welcome to #{title}

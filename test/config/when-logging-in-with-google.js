@@ -1,7 +1,8 @@
 var proxyquire = require('proxyquire'),
-    assert = require('assert'),
     mockModel = require('../utils/mockModel'),
-    sinon = require('sinon');
+    sinon = require('sinon'),
+    httpMocks = require('node-mocks-http'),
+    expect = require('chai').expect;
 
 var setupHandler = function (User) {
   return proxyquire('../../config/passport/googleResponseHandler', {
@@ -27,11 +28,11 @@ describe('When logging in with Google', function () {
     });
     
     it('Should look up', function () {
-      assert(model.findOne.calledWith({ where: {openid: 1337}}));
+      expect(model.findOne.calledWith({ where: {openid: 1337}}));
     });
     
     it('Should simply move on', function () {
-      assert(doneSpy.calledWith(null, 42));
+      expect(doneSpy.calledWith(null, 42));
     });
   });
   
@@ -61,20 +62,20 @@ describe('When logging in with Google', function () {
     });
     
     it('Should look up emails', function () {
-      assert(model.findOne.calledWith({ where: {email: 'test@test.com'}}));
-      assert(model.findOne.calledWith({ where: {email: 'test2@test.com'}}));
+      expect(model.findOne.calledWith({ where: {email: 'test@test.com'}}));
+      expect(model.findOne.calledWith({ where: {email: 'test2@test.com'}}));
     });
     
-//    it('Should update user', function () {
-//      assert(userReturned.updateAttributes.calledWith({
-//        openid: 1337,
-//        name: 'Test Testersen'
-//      }));
-//    });
+    it('Should update user', function () {
+      expect(userReturned.updateAttributes.calledWith({
+        openid: 1337,
+        name: 'Test Testersen'
+      }));
+    });
     
     it('Should move on with found user', function (done) {
       handler.then(function () {
-        assert(doneSpy.calledWith(null, userReturned));
+        expect(doneSpy.calledWith(null, userReturned));
         done();
       });
     });

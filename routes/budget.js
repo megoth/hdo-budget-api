@@ -2,6 +2,7 @@ var Budget = require('../models/Budget').model(),
     util = require('util');
 
 exports.create = function (req, res) {
+  res.status(200);
   res.render('budget/create', { title: 'Create new budget' });
 };
 

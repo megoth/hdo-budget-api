@@ -1,0 +1,24 @@
+doctype html
+html(lang="en")
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  body.container
+    header
+      h1= title
+      nav.navbar.navbar-default(role="navigation")
+        ul.nav.navbar-nav
+          li(class= domain=='frontpage' ? ['active'] : [])
+            a(href="/") Forside
+          if (isAuthenticated)
+            li(class= domain=='budgets' ? ['active'] : [])
+              a(href="/admin") Admin
+            li
+              a(href="/logout") Logg ut
+          else
+            li
+              a(href="/auth/google") Logg inn
+    div(role="main")
+      block mainContent
+  </body>
+</html>

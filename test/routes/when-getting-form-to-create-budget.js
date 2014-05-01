@@ -9,6 +9,7 @@ describe('When getting form to create budget', function () {
   
   beforeEach(function() {
     request = httpMocks.createRequest();
+    request.isAuthenticated = sinon.spy();
     response = httpMocks.createResponse();
     
     budget.create(request, response);

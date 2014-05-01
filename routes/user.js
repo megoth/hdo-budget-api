@@ -1,3 +1,4 @@
+// var renderUtil = require('../util/render');
 
 /*
  * GET users listing.

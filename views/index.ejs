@@ -1,9 +1,0 @@
-<% layout('layout') -%>
-  
-<h1><%= title %></h1>
-<p>Welcome to <%= title %></p>
-<% if(user) { %>
-<a href="/admin">Go to admin</a>
-<% } else { %>
-<a href="/auth/google">Sign In with Google</a>
-<% } %>

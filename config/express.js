@@ -6,8 +6,8 @@
 var express = require('express'),
     expressValidator = require('express-validator'),
     flash = require('connect-flash'),
-    path = require('path'),
-    engine = require('ejs-locals');
+    path = require('path')
+    engine = require('jade').__express;
 
 module.exports = function (app, passport) {
   app.set('port', process.env.PORT || 3000);
@@ -21,6 +21,7 @@ module.exports = function (app, passport) {
     level: 9
   }));
   app.use(express.static(path.join(__dirname, '../public')));
+  app.use(express.static(path.join(__dirname, '../bower_components')));
   app.use(express.logger('dev'));
   app.use(express.json());
   app.use(express.urlencoded());
@@ -28,8 +29,11 @@ module.exports = function (app, passport) {
 
   // set views path, template engine and default layout
   app.set('views', path.join(__dirname, '../views'));
-  app.engine('ejs', engine);
-  app.set('view engine', 'ejs');
+  app.engine('jade', engine);
+  app.set('view engine', 'jade');
+  app.set('view options', {
+    layout: false
+  });
 
   app.configure(function () {
     // cookieParser should be above session

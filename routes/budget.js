@@ -1,9 +1,16 @@
+var renderUtil = require('../util/render');
 var Budget = require('../models/Budget').model(),
     util = require('util');
 
+exports.index = function(req, res){
+  res.render('admin', renderUtil.options(req, 'budgets', 'Admin', {
+    user: req.user
+  }));
+};
+
 exports.create = function (req, res) {
   res.status(200);
-  res.render('budget/create', { title: 'Create new budget' });
+  res.render('budget/create', renderUtil.options(req, 'budgets', 'Create new budget'));
 };
 
 exports.post = function (req, res) {

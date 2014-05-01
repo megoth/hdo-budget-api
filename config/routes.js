@@ -1,6 +1,5 @@
 var routes = require('../routes');
 var user = require('../routes/user');
-var admin = require('../routes/admin');
 var budget = require('../routes/budget');
 
 module.exports = function (app, passport, auth) {
@@ -14,7 +13,8 @@ module.exports = function (app, passport, auth) {
   }));
   
   // admin pages
-  app.get('/admin', auth.requiresLogin, admin.list);
+  app.get('/admin', auth.requiresLogin, budget.index);
+  app.get('/budgets/create', auth.requiresLogin, budget.create);
   app.get('/budgets/new', auth.requiresLogin, budget.create);
   app.post('/budgets/new', auth.requiresLogin, budget.post);
   app.get('/users', auth.requiresLogin, user.list);

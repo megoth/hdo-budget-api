@@ -4,6 +4,7 @@
  */
 
 var express = require('express'),
+    expressValidator = require('express-validator'),
     flash = require('connect-flash'),
     path = require('path')
     engine = require('jade').__express;
@@ -40,6 +41,7 @@ module.exports = function (app, passport) {
 
     // bodyParser should be above methodOverride
     app.use(express.bodyParser());
+    app.use(expressValidator());
 
     // express/mongo session storage
     app.use(express.session({

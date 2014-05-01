@@ -1,7 +1,7 @@
 //var mongoose = require('mongoose'),
 //  User = mongoose.model('User'),
 var GoogleStrategy = require('passport-google').Strategy,
-    User = require('../models/User')();
+    User = require('../models/User').model();
 
 module.exports = function (passport) {
   // require('./initializer')
@@ -25,14 +25,7 @@ module.exports = function (passport) {
   passport.use(new GoogleStrategy({
     returnURL: 'http://localhost:3000/auth/google/return',
     realm: 'http://localhost:3000/'
-  }, function (identifier, profile, done) {
-      User.findOne({ where: {openid: identifier } }, done);
-//      User.findOne({ where: {openid: identifier } }, function (err, user) {
-//        console.log("ERROR", err, user);
-//        return done(err, user);
-//      });
-    }
-  ));
+  }, require('./passport/googleResponseHandler')));
   // use geekevents strategy
 //  passport.use(new GeekeventsStrategy(function (userCred, done) {
 //    User.findOne(userCred, function (err, user) {

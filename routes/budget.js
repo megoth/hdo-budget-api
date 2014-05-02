@@ -37,6 +37,6 @@ exports.post = function (req, res) {
     year: parseInt(req.body.year)
   }, function (err, budget) {
     req.flash('notice', 'Created budget');
-    res.redirect(303, util.format('budget/%d', budget.id));
+    res.redirect(303, util.format('budgets/%d', budget.id));
   });
 };

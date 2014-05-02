@@ -13,8 +13,9 @@ module.exports = function (app, passport, auth) {
   }));
   
   // admin pages
-  app.get('/admin', auth.requiresLogin, budget.index);
+  app.get('/budgets', budget.index);
   app.get('/budgets/new', auth.requiresLogin, budget.create);
   app.post('/budgets/create', auth.requiresLogin, budget.post);
+  app.get('/budgets/view/:id', budget.view);
   app.get('/users', auth.requiresLogin, user.list);
 };

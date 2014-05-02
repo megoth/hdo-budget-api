@@ -1,0 +1,12 @@
+extends ../layout
+
+block mainContent
+  if (isAuthenticated)
+    ul
+      li
+        a(href="/budgets/new") Create new budget
+  h2 Budgets
+  ul
+    each budget in budgets
+      li
+        a(href="/budgets/view/" + budget.id)= budget.name

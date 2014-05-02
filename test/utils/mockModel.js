@@ -3,7 +3,7 @@ var sinon = require('sinon'),
 
 module.exports = function (args) {
   var model = {};
-  [{create: 1}, {findOne: 1}, {updateAttributes: 1}].forEach(function (method) {
+  [{all: 1}, {create: 1}, {findOne: 1}, {updateAttributes: 1}].forEach(function (method) {
     var key = Object.keys(method)[0];
     var val = method[key];
     var response = args[key];

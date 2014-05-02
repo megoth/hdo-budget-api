@@ -9,15 +9,17 @@ html(lang="en")
       nav.navbar.navbar-default(role="navigation")
         ul.nav.navbar-nav
           li(class= domain=='frontpage' ? ['active'] : [])
-            a(href="/") Forside
+            a(href="/") Frontpage
+          li(class= domain=='budgets' ? ['active'] : [])
+            a(href="/budgets") Budgets
           if (isAuthenticated)
-            li(class= domain=='budgets' ? ['active'] : [])
+            li(class= domain=='admin' ? ['active'] : [])
               a(href="/admin") Admin
             li
-              a(href="/logout") Logg ut
+              a(href="/logout") Log out
           else
             li
-              a(href="/auth/google") Logg inn
+              a(href="/auth/google") Log in
     div(role="main")
       block mainContent
   </body>

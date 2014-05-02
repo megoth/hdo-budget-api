@@ -3,9 +3,13 @@ var Budget = require('../models/Budget').model(),
     util = require('util');
 
 exports.index = function(req, res){
-  res.render('admin', renderUtil.options(req, 'budgets', 'Admin', {
-    user: req.user
-  }));
+  Budget.all({}, function (err, budgets) {
+    res.status(200);
+    res.render('budget/index', renderUtil.options(req, 'budgets', 'Admin', {
+      budgets: budgets,
+      user: req.user
+    }));
+  });
 };
 
 exports.view = function (req, res) {

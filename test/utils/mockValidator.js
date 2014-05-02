@@ -3,7 +3,7 @@ var sinon = require('sinon'),
 
 module.exports = function (req) {
   var constraints = {};
-  ['isInt', 'notEmpty'].forEach(function (method) {
+  ['isAlpha', 'isInt', 'notEmpty'].forEach(function (method) {
     constraints[method] = sinon.spy(function () {
       return constraints;
     });
@@ -11,7 +11,7 @@ module.exports = function (req) {
   var validations = {
     constraints: constraints
   };
-  ['checkBody'].forEach(function (method) {
+  ['checkBody', 'checkParams', 'checkQuery'].forEach(function (method) {
     validations[method] = sinon.spy(function () {
       return constraints;
     });

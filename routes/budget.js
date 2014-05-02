@@ -8,6 +8,17 @@ exports.index = function(req, res){
   }));
 };
 
+exports.view = function (req, res) {
+  req.checkParams('id', 'Id required').notEmpty().isInt();
+
+  Budget.findOne({ where: { id: req.params.id }}, function (err, budget) {
+    res.status(200);
+    res.render('budget/view', renderUtil.options(req, 'budgets', 'Budget', {
+      budget: budget
+    }));
+  });
+};
+
 exports.create = function (req, res) {
   res.status(200);
   res.render('budget/create', renderUtil.options(req, 'budgets', 'Create new budget'));

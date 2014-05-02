@@ -19,21 +19,24 @@ module.exports = function (identifier, profile, done) {
       });
       return defer.promise;
     });
-    Q.allSettled(userQueries).done(function (results) {
-      user = results.reduce(function (memo, result) {
-        return memo || (result.state == 'fulfilled' ? result.value : null);
-      }, null);
-      done(null, user);
-      foundUser.resolve(user);
-//      console.log("TEST", user.prototype);
-//      user.updateAttributes({
-//        identifier: identifier,
-//        name: profile.displayName
-//      }, function (err, user) {
-//        done(null, user);
-//        foundUser.resolve(user);
-//      });
-    });
+    Q.allSettled(userQueries)
+      .done(function (results) {
+        user = results.reduce(function (memo, result) {
+          return memo || (result.state == 'fulfilled' ? result.value : null);
+        }, null);
+        if (user) {
+          user.updateAttributes({
+            identifier: identifier,
+            name: profile.displayName
+          }, function (err, user2) {
+            foundUser.resolve(user2);
+            done(null, user2);
+          });
+        } else {
+          foundUser.reject('no user found');
+          done('no user found', null);
+        }
+      });
   });
   return foundUser.promise;
 };

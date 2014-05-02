@@ -28,11 +28,11 @@ describe('When logging in with Google', function () {
     });
     
     it('Should look up', function () {
-      expect(model.findOne.calledWith({ where: {openid: 1337}}));
+      expect(model.findOne.calledWith({ where: {openid: 1337}})).to.be.true;
     });
     
     it('Should simply move on', function () {
-      expect(doneSpy.calledWith(null, 42));
+      expect(doneSpy.calledWith(null, 42)).to.be.true;
     });
   });
   
@@ -41,10 +41,14 @@ describe('When logging in with Google', function () {
     var userReturned;
     
     beforeEach(function () {
-      userReturned = {};
+      var UserReturned = mockModel({
+        updateAttributes: [null, 64]
+      });
+      userReturned = UserReturned.model();
+      userReturned.test = 1337;
       var User = mockModel({
         findOne: {
-          response: [null, null],
+          response: ['no user found', null],
           except: [{
             where: [ { where: { email: 'test@test.com' } } ],
             response: [null, userReturned]
@@ -62,20 +66,23 @@ describe('When logging in with Google', function () {
     });
     
     it('Should look up emails', function () {
-      expect(model.findOne.calledWith({ where: {email: 'test@test.com'}}));
-      expect(model.findOne.calledWith({ where: {email: 'test2@test.com'}}));
+      expect(model.findOne.calledWith({ where: {email: 'test@test.com'}})).to.be.true;
+      expect(model.findOne.calledWith({ where: {email: 'test2@test.com'}})).to.be.true;
     });
     
-    it('Should update user', function () {
-      expect(userReturned.updateAttributes.calledWith({
-        openid: 1337,
-        name: 'Test Testersen'
-      }));
+    it('Should update user', function (done) {
+      handler.then(function () {
+        expect(userReturned.updateAttributes.calledWith({
+          identifier: 1337,
+          name: 'Test Testersen'
+        })).to.be.true;
+        done();
+      });
     });
     
     it('Should move on with found user', function (done) {
       handler.then(function () {
-        expect(doneSpy.calledWith(null, userReturned));
+        expect(doneSpy.calledWith(null, 64)).to.be.true;
         done();
       });
     });

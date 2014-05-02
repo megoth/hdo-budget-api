@@ -1,5 +1,15 @@
 extends ../layout
 
 block mainContent
-  form
-    p test
+  form(role="test", method="post", action="/budgets/create").form-horizontal
+    div.form-group
+      label(for="name").col-sm-2 Name
+      div.col-sm-10
+        input(name="name", type="text", placeholder="Enter name", required).form-control
+    div.form-group
+      label(for="year").col-sm-2 Year
+      div.col-sm-10
+        input(name="year", type="number", placeholder="Enter year", required).form-control
+    div.form-group
+      div.col-sm-offset-2.col-sm-10
+        button(type="submit").btn.btn-default Submit

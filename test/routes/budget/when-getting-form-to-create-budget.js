@@ -1,14 +1,14 @@
 var assert = require('assert'),
     sinon = require('sinon'),
-    budget = require('../../routes/budget'),
+    budget = require('../../../routes/budget'),
     httpMocks = require('node-mocks-http'),
     expect = require('chai').expect;
 
 describe('When getting form to create budget', function () {
-  var request, response;
+  var response;
   
   beforeEach(function() {
-    request = httpMocks.createRequest();
+    var request = httpMocks.createRequest();
     request.isAuthenticated = sinon.spy();
     response = httpMocks.createResponse();
     

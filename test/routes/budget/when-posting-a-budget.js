@@ -2,31 +2,30 @@ var proxyquire = require('proxyquire'),
     sinon = require('sinon'),
     httpMocks = require('node-mocks-http'),
     expect = require('chai').expect,
-    mockValidator = require('../utils/mockValidator'),
-    mockModel = require('../utils/mockModel');
+    mockValidator = require('../../utils/mockValidator'),
+    mockModel = require('../../utils/mockModel'),
+    Budget = mockModel({ 
+      'create': [null, { id: 42 }] 
+    }),
+    budget = proxyquire('../../../routes/budget', {
+      '../models/Budget': Budget
+    });
 
 describe('When posting a budget', function () {
   var validator;
   var model;
-  var redirect;
   var flash;
-  var request, reponse;
+  var reponse;
   
   beforeEach(function() {
-    // mock model
-    var Budget = mockModel({ 
-      'create': [null, { id: 42 }] 
-    });
     model = Budget.model();
-    budget = proxyquire('../../routes/budget', {
-      '../models/Budget': Budget
-    });
     request = httpMocks.createRequest({
       body: { name: 'test', year: '2014' }
     });
     validator = mockValidator(request);
     request.flash = flash = sinon.spy();
     response = httpMocks.createResponse();
+
     budget.post(request, response);
   });
   

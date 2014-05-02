@@ -5,7 +5,7 @@ var Budget = require('../models/Budget').model(),
 exports.index = function(req, res){
   Budget.all({}, function (err, budgets) {
     res.status(200);
-    res.render('budget/index', renderUtil.options(req, 'budgets', 'Admin', {
+    res.render('budget/index', renderUtil.options(req, 'budgets', 'Budgets', {
       budgets: budgets,
       user: req.user
     }));

@@ -55,6 +55,13 @@ module.exports = function (app, passport) {
     app.use(passport.initialize());
     app.use(passport.session());
 
+    // add standard variables to views
+    app.use(function (req, res, next) {
+      res.locals.isAuthenticated = req.isAuthenticated();
+      res.locals.user = req.user;
+      next();
+    });
+
     app.use(express.favicon());
 
     // routes should be at the last

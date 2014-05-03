@@ -16,8 +16,10 @@ module.exports = function (app, passport, auth) {
   
   // admin pages
   app.get('/budgets', budget.index);
-  app.get('/budgets/new', auth.requiresLogin, budget.create);
-  app.post('/budgets/create', auth.requiresLogin, budget.post);
+  // app.get('/budgets/new', auth.requiresLogin, budget.create);
+  // app.post('/budgets/create', auth.requiresLogin, budget.post);
+  app.get('/budgets/new', budget.create);
+  app.post('/budgets/create', budget.post);
   app.get('/budgets/:id', budget.view);
   app.get('/users', auth.requiresLogin, user.list);
 };

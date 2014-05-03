@@ -1,7 +1,7 @@
 extends ../layout
 
 block mainContent
-  form(role="test", method="post", action="/budgets/create").form-horizontal
+  form(role="form", method="post", action="/budgets/create", enctype="multipart/form-data").form-horizontal
     div.form-group
       label(for="name").col-sm-2 Name
       div.col-sm-10
@@ -10,6 +10,10 @@ block mainContent
       label(for="year").col-sm-2 Year
       div.col-sm-10
         input(name="year", type="number", placeholder="Enter year", required).form-control
+    div.form-group
+      label(for="structureFile").col-sm-2 Structure file
+      div.col-sm-10
+        input(name="structureFile", type="file", placeholder="Input structure file", required).form-control
     div.form-group
       div.col-sm-offset-2.col-sm-10
         button(type="submit").btn.btn-default Submit
